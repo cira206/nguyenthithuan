@@ -1,0 +1,217 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Nơi ảnh up lên sẽ được lưu
+media_folder: "images"
+public_folder: "images"
+
+# Ngôn ngữ giao diện quản trị
+locale: "vi"
+
+collections:
+  - name: "noidung"
+    label: "Nội dung trang"
+    files:
+      - name: "trang"
+        label: "Trang giới thiệu"
+        file: "content.json"
+        fields:
+          # ----- META -----
+          - label: "Tiêu đề trình duyệt"
+            name: "meta"
+            widget: "object"
+            fields:
+              - { label: "Tiêu đề trang (hiện trên tab trình duyệt)", name: "page_title", widget: "string" }
+              - { label: "Logo - phần trái", name: "brand_left", widget: "string" }
+              - { label: "Logo - phần giữa (màu vàng)", name: "brand_mid", widget: "string" }
+              - { label: "Logo - phần phải", name: "brand_right", widget: "string" }
+
+          # ----- HERO -----
+          - label: "Đầu trang (Hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Dòng chữ nhỏ phía trên tên", name: "eyebrow", widget: "string" }
+              - { label: "Tên - dòng 1", name: "name_line1", widget: "string" }
+              - { label: "Tên - dòng 2 (màu vàng)", name: "name_line2", widget: "string" }
+              - { label: "Câu giới thiệu ngắn", name: "subtitle", widget: "text" }
+              - { label: "Ảnh chân dung (để trống nếu không dùng)", name: "portrait", widget: "image", required: false }
+              - label: "4 điểm nhấn nhanh"
+                name: "meta"
+                widget: "list"
+                field: { label: "Dòng", name: "item", widget: "string" }
+
+          # ----- STORY -----
+          - label: "Câu chuyện"
+            name: "story"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục (cho phép thẻ <em>)", name: "heading", widget: "string" }
+              - label: "Các đoạn văn (phần đầu)"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Đoạn", name: "p", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+              - { label: "Câu trích nổi bật", name: "pull_quote", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+              - label: "Các đoạn văn (phần sau)"
+                name: "paragraphs_after"
+                widget: "list"
+                field: { label: "Đoạn", name: "p", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+
+          # ----- VENTURE -----
+          - label: "Doanh nghiệp (số liệu)"
+            name: "venture"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục", name: "heading", widget: "string" }
+              - label: "Các ô số liệu"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Con số", name: "number", widget: "string" }
+                  - { label: "Mô tả", name: "label", widget: "string" }
+              - { label: "Đoạn kết", name: "closing", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+              - label: "Ảnh quán (kéo lên đây)"
+                name: "photos"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Ảnh", name: "image", widget: "image" }
+                  - { label: "Mô tả ảnh", name: "alt", widget: "string", required: false }
+
+          # ----- JOURNEY -----
+          - label: "Hành trình (timeline)"
+            name: "journey"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục", name: "heading", widget: "string" }
+              - label: "Các mốc"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Năm / mốc", name: "year", widget: "string" }
+                  - { label: "Tiêu đề", name: "title", widget: "string" }
+                  - { label: "Nội dung", name: "text", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+
+          # ----- ACHIEVEMENTS -----
+          - label: "Thành tựu nổi bật"
+            name: "achievements"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục", name: "heading", widget: "string" }
+              - label: "Các thẻ"
+                name: "cards"
+                widget: "list"
+                fields:
+                  - { label: "Nhãn nhỏ", name: "tag", widget: "string" }
+                  - { label: "Tiêu đề thẻ", name: "title", widget: "string" }
+                  - { label: "Nội dung", name: "text", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+
+          # ----- AWARDS -----
+          - label: "Giải thưởng"
+            name: "awards"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục", name: "heading", widget: "string" }
+              - label: "Danh sách giải"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Biểu tượng (ví dụ ★ ◆ 10)", name: "icon", widget: "string" }
+                  - { label: "Tên giải", name: "title", widget: "string" }
+                  - { label: "Đơn vị / chú thích", name: "subtitle", widget: "string" }
+                  - { label: "Đường dẫn (link, để trống nếu không có)", name: "url", widget: "string", required: false }
+
+          # ----- BOOK -----
+          - label: "Sách"
+            name: "book"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục", name: "heading", widget: "string" }
+              - { label: "Ảnh bìa sách (để trống = dùng bìa vẽ sẵn)", name: "cover_image", widget: "image", required: false }
+              - { label: "Tên sách", name: "title", widget: "string" }
+              - { label: "Phụ đề / NXB", name: "subtitle", widget: "string" }
+              - label: "Đoạn mô tả"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Đoạn", name: "p", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+              - label: "Số liệu sách"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Con số", name: "number", widget: "string" }
+                  - { label: "Mô tả", name: "label", widget: "string" }
+
+          # ----- SPEAKING & MEDIA -----
+          - label: "Diễn thuyết & Báo chí"
+            name: "speaking"
+            widget: "object"
+            fields:
+              - { label: "Cột trái - nhãn", name: "col1_eyebrow", widget: "string" }
+              - { label: "Cột trái - tiêu đề", name: "col1_heading", widget: "string" }
+              - label: "Sự kiện / diễn thuyết"
+                name: "events"
+                widget: "list"
+                fields:
+                  - { label: "Tiêu đề", name: "title", widget: "string" }
+                  - { label: "Chi tiết", name: "meta", widget: "string" }
+                  - { label: "Đường dẫn (link, để trống nếu không có)", name: "url", widget: "string", required: false }
+              - { label: "Cột phải - nhãn", name: "col2_eyebrow", widget: "string" }
+              - { label: "Cột phải - tiêu đề", name: "col2_heading", widget: "string" }
+              - { label: "Ghi chú truyền hình", name: "tv_note", widget: "string" }
+              - label: "Đài truyền hình"
+                name: "tv"
+                widget: "list"
+                fields:
+                  - { label: "Tên đài", name: "name", widget: "string" }
+                  - { label: "Đường dẫn (link, để trống nếu không có)", name: "url", widget: "string", required: false }
+              - { label: "Ghi chú báo chí", name: "press_note", widget: "string" }
+              - label: "Báo chí"
+                name: "press"
+                widget: "list"
+                fields:
+                  - { label: "Tên báo", name: "name", widget: "string" }
+                  - { label: "Đường dẫn (link, để trống nếu không có)", name: "url", widget: "string", required: false }
+              - label: "Ảnh sự kiện (kéo lên đây)"
+                name: "photos"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Ảnh", name: "image", widget: "image" }
+                  - { label: "Mô tả ảnh", name: "alt", widget: "string", required: false }
+
+          # ----- ROLES -----
+          - label: "Vai trò"
+            name: "roles"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục", name: "heading", widget: "string" }
+              - label: "Danh sách vai trò"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Chức danh", name: "role", widget: "string" }
+                  - { label: "Tổ chức", name: "org", widget: "string" }
+                  - { label: "Thời gian", name: "years", widget: "string" }
+
+          # ----- CONNECT -----
+          - label: "Liên hệ"
+            name: "connect"
+            widget: "object"
+            fields:
+              - { label: "Nhãn mục", name: "eyebrow", widget: "string" }
+              - { label: "Tiêu đề mục", name: "heading", widget: "string" }
+              - label: "Các link liên hệ"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Tên hiển thị", name: "label", widget: "string" }
+                  - { label: "Đường dẫn (URL)", name: "url", widget: "string" }
+              - { label: "Dòng chân trang", name: "footer", widget: "string" }
