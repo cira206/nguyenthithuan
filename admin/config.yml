@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: THAY_USERNAME/THAY_TEN_REPO   # <-- sẽ sửa ở Phase sau
+  name: git-gateway
   branch: main
 
 # Nơi ảnh up lên sẽ được lưu
