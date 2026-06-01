@@ -52,12 +52,12 @@ collections:
               - label: "Các đoạn văn (phần đầu)"
                 name: "paragraphs"
                 widget: "list"
-                field: { label: "Đoạn", name: "p", widget: "text" }
-              - { label: "Câu trích nổi bật", name: "pull_quote", widget: "text" }
+                field: { label: "Đoạn", name: "p", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
+              - { label: "Câu trích nổi bật", name: "pull_quote", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
               - label: "Các đoạn văn (phần sau)"
                 name: "paragraphs_after"
                 widget: "list"
-                field: { label: "Đoạn", name: "p", widget: "text" }
+                field: { label: "Đoạn", name: "p", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
 
           # ----- VENTURE -----
           - label: "Doanh nghiệp (số liệu)"
@@ -72,7 +72,7 @@ collections:
                 fields:
                   - { label: "Con số", name: "number", widget: "string" }
                   - { label: "Mô tả", name: "label", widget: "string" }
-              - { label: "Đoạn kết", name: "closing", widget: "text" }
+              - { label: "Đoạn kết", name: "closing", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
               - label: "Ảnh quán (kéo lên đây)"
                 name: "photos"
                 widget: "list"
@@ -94,7 +94,7 @@ collections:
                 fields:
                   - { label: "Năm / mốc", name: "year", widget: "string" }
                   - { label: "Tiêu đề", name: "title", widget: "string" }
-                  - { label: "Nội dung", name: "text", widget: "text" }
+                  - { label: "Nội dung", name: "text", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
 
           # ----- ACHIEVEMENTS -----
           - label: "Thành tựu nổi bật"
@@ -109,7 +109,7 @@ collections:
                 fields:
                   - { label: "Nhãn nhỏ", name: "tag", widget: "string" }
                   - { label: "Tiêu đề thẻ", name: "title", widget: "string" }
-                  - { label: "Nội dung", name: "text", widget: "text" }
+                  - { label: "Nội dung", name: "text", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
 
           # ----- AWARDS -----
           - label: "Giải thưởng"
@@ -139,7 +139,7 @@ collections:
               - label: "Đoạn mô tả"
                 name: "paragraphs"
                 widget: "list"
-                field: { label: "Đoạn", name: "p", widget: "text" }
+                field: { label: "Đoạn", name: "p", widget: "markdown", minimal: true, buttons: ["bold","italic","link"] }
               - label: "Số liệu sách"
                 name: "stats"
                 widget: "list"
