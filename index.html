@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Nguyen Thi Thuan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0f;
+    --ink-2:#100f16;
+    --surface:#15131c;
+    --surface-2:#1c1822;
+    --cream:#f3ece0;
+    --cream-dim:#bcb3a6;
+    --muted:#7d7669;
+    --amber:#e3a857;
+    --amber-soft:#f0c386;
+    --gold:#cda53f;
+    --line:rgba(227,168,87,.16);
+    --line-soft:rgba(243,236,224,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Archivo',sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* grain overlay */
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:9999;pointer-events:none;
+    opacity:.045;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--amber);color:var(--ink)}
+
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400;line-height:1.04;letter-spacing:-.01em}
+  .eyebrow{
+    font-family:'Archivo',sans-serif;font-weight:500;
+    font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--amber);
+  }
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  section{position:relative}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 32px;
+    transition:background .4s,padding .4s,border-color .4s;
+    border-bottom:1px solid transparent;
+  }
+  nav.scrolled{
+    background:rgba(10,10,15,.82);
+    backdrop-filter:blur(14px);
+    padding:14px 32px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .brand{font-family:'Fraunces',serif;font-size:1.05rem;letter-spacing:.02em}
+  .brand b{color:var(--amber);font-weight:600}
+  .nav-links{display:flex;gap:34px;font-size:.82rem;letter-spacing:.06em}
+  .nav-links a{color:var(--cream-dim);transition:color .3s}
+  .nav-links a:hover{color:var(--amber)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    padding:140px 0 90px;position:relative;overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute;top:-10%;right:-5%;width:780px;height:780px;
+    background:radial-gradient(circle, rgba(227,168,87,.20) 0%, rgba(227,168,87,.06) 35%, transparent 68%);
+    filter:blur(20px);pointer-events:none;
+    animation:breathe 9s ease-in-out infinite;
+  }
+  .hero-glow.two{
+    top:auto;bottom:-25%;left:-15%;right:auto;width:620px;height:620px;
+    background:radial-gradient(circle, rgba(120,90,200,.10) 0%, transparent 65%);
+    animation-delay:-4s;
+  }
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.12);opacity:1}}
+  .hero .wrap{position:relative;z-index:2}
+  .hero .eyebrow{display:block;margin-bottom:30px}
+  .hero h1{
+    font-size:clamp(3rem,9vw,7.4rem);font-weight:300;
+    letter-spacing:-.025em;margin-bottom:14px;
+  }
+  .hero h1 .it{font-style:italic;font-weight:300;color:var(--amber-soft)}
+  .hero-sub{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.25rem,2.7vw,1.95rem);color:var(--cream-dim);
+    max-width:680px;line-height:1.35;margin-top:26px;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:14px 30px;margin-top:46px;
+    font-size:.85rem;letter-spacing:.05em;color:var(--muted);
+  }
+  .hero-meta span{display:flex;align-items:center;gap:10px}
+  .hero-meta span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .hero .reveal{transition-delay:var(--d,0s)}
+
+  /* ===== SECTION HEADERS ===== */
+  .sec{padding:110px 0;border-top:1px solid var(--line-soft)}
+  .sec-head{margin-bottom:60px;max-width:760px}
+  .sec-head .eyebrow{display:block;margin-bottom:22px}
+  .sec-head h2{font-size:clamp(2.1rem,5vw,3.5rem);font-weight:300}
+  .sec-head h2 em{font-style:italic;color:var(--amber-soft)}
+
+  /* ===== STORY ===== */
+  .story p{
+    font-size:clamp(1.05rem,1.9vw,1.32rem);
+    color:var(--cream-dim);max-width:760px;margin-bottom:1.5em;font-weight:300;
+  }
+  .story p .lead{color:var(--cream)}
+  .story .drop::first-letter{
+    font-family:'Fraunces',serif;float:left;font-size:4.4rem;line-height:.78;
+    padding:6px 14px 0 0;color:var(--amber);font-weight:400;
+  }
+  .pull{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.3;
+    color:var(--cream);margin:54px 0;padding-left:30px;
+    border-left:2px solid var(--amber);max-width:840px;
+  }
+
+  /* ===== STATS ===== */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line-soft);border:1px solid var(--line-soft);
+    border-radius:4px;overflow:hidden;margin-top:10px;
+  }
+  .stat{background:var(--ink);padding:38px 26px;transition:background .4s}
+  .stat:hover{background:var(--surface)}
+  .stat .n{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.2vw,3.2rem);font-weight:400;color:var(--amber);letter-spacing:-.02em}
+  .stat .l{font-size:.82rem;letter-spacing:.04em;color:var(--cream-dim);margin-top:8px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* ===== TIMELINE ===== */
+  .timeline{position:relative;margin-top:20px;padding-left:4px}
+  .tl-item{
+    display:grid;grid-template-columns:120px 1fr;gap:34px;
+    padding:30px 0;border-top:1px solid var(--line-soft);align-items:start;
+  }
+  .tl-item:last-child{border-bottom:1px solid var(--line-soft)}
+  .tl-year{font-family:'Fraunces',serif;font-size:1.7rem;color:var(--amber);font-weight:400}
+  .tl-body h4{font-size:1.3rem;font-weight:400;margin-bottom:8px}
+  .tl-body p{color:var(--cream-dim);font-size:1rem;max-width:620px}
+  @media(max-width:680px){.tl-item{grid-template-columns:1fr;gap:8px}.tl-year{font-size:1.4rem}}
+
+  /* ===== ACHIEVEMENTS GRID ===== */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--surface);border:1px solid var(--line-soft);
+    border-radius:6px;padding:34px 32px;transition:transform .5s,border-color .5s,background .5s;
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 100% 0%, rgba(227,168,87,.08), transparent 55%);
+    opacity:0;transition:opacity .5s;
+  }
+  .card:hover{transform:translateY(-5px);border-color:var(--line);background:var(--surface-2)}
+  .card:hover::before{opacity:1}
+  .card h4{font-size:1.32rem;font-weight:400;margin-bottom:12px;position:relative}
+  .card p{color:var(--cream-dim);font-size:.98rem;position:relative}
+  .card .tag{
+    display:inline-block;font-family:'Archivo';font-size:.68rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--amber);margin-bottom:16px;
+  }
+
+  /* ===== AWARDS ===== */
+  .awards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:680px){.awards{grid-template-columns:1fr}}
+  .award{
+    border:1px solid var(--line);border-radius:6px;padding:32px 30px;
+    background:linear-gradient(135deg, rgba(205,165,63,.06), transparent 70%);
+    display:flex;gap:22px;align-items:flex-start;transition:border-color .4s,transform .4s;
+  }
+  .award:hover{border-color:rgba(205,165,63,.5);transform:translateY(-4px)}
+  .award .ico{
+    flex-shrink:0;width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;
+  }
+  .award h4{font-size:1.18rem;font-weight:400;color:var(--cream)}
+  .award span{font-size:.85rem;color:var(--muted);letter-spacing:.04em}
+
+  /* ===== BOOK FEATURE ===== */
+  .book{
+    display:grid;grid-template-columns:300px 1fr;gap:54px;align-items:center;
+    background:var(--surface);border:1px solid var(--line-soft);border-radius:8px;padding:48px;
+  }
+  @media(max-width:760px){.book{grid-template-columns:1fr;gap:32px;padding:32px}}
+  .book-cover{
+    aspect-ratio:3/4.2;border-radius:4px;position:relative;overflow:hidden;
+    background:linear-gradient(160deg,#241a12,#3a2a18);
+    border:1px solid rgba(227,168,87,.25);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.7);
+    display:flex;flex-direction:column;justify-content:space-between;padding:28px 24px;
+  }
+  .book-cover::after{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:rgba(0,0,0,.25)}
+  .book-cover .bc-top{font-family:'Archivo';font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+  .book-cover .bc-title{font-family:'Fraunces',serif;font-size:1.55rem;line-height:1.15;color:var(--cream)}
+  .book-cover .bc-num{font-family:'Fraunces',serif;font-size:3.4rem;color:var(--amber);line-height:1}
+  .book-info h3{font-size:2rem;font-weight:300;margin-bottom:6px}
+  .book-info .sub{font-style:italic;font-family:'Fraunces';color:var(--amber-soft);margin-bottom:20px;font-size:1.1rem}
+  .book-info p{color:var(--cream-dim);margin-bottom:14px}
+  .book-stats{display:flex;gap:38px;margin-top:24px;flex-wrap:wrap}
+  .book-stats .bs .n{font-family:'Fraunces';font-size:1.8rem;color:var(--amber)}
+  .book-stats .bs .l{font-size:.78rem;color:var(--muted);letter-spacing:.05em}
+
+  /* ===== LISTS (speaking / media) ===== */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:54px}
+  @media(max-width:760px){.two-col{grid-template-columns:1fr;gap:40px}}
+  .col h3{font-size:1.5rem;font-weight:300;margin-bottom:26px;color:var(--cream)}
+  .col h3 .e{font-family:'Archivo';font-size:.7rem;letter-spacing:.2em;color:var(--amber);display:block;text-transform:uppercase;margin-bottom:10px}
+  .ev{padding:18px 0;border-top:1px solid var(--line-soft)}
+  .ev:last-child{border-bottom:1px solid var(--line-soft)}
+  .ev .t{font-size:1.02rem;color:var(--cream);margin-bottom:3px}
+  .ev .m{font-size:.82rem;color:var(--muted);letter-spacing:.03em}
+
+  /* media chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .chip{
+    border:1px solid var(--line-soft);border-radius:40px;padding:9px 18px;
+    font-size:.84rem;color:var(--cream-dim);letter-spacing:.03em;transition:.35s;
+  }
+  .chip:hover{border-color:var(--line);color:var(--amber);background:var(--surface)}
+  .chip.tv{border-color:var(--line);color:var(--amber-soft)}
+
+  /* roles */
+  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+  @media(max-width:760px){.roles{grid-template-columns:1fr}}
+  .role{padding:30px 28px;border:1px solid var(--line-soft);border-radius:6px;background:var(--surface)}
+  .role .r{font-family:'Fraunces';font-size:1.25rem;margin-bottom:6px}
+  .role .o{color:var(--amber);font-size:.9rem;margin-bottom:4px}
+  .role .y{color:var(--muted);font-size:.8rem;letter-spacing:.05em}
+
+  /* ===== IMAGE STYLES (các kiểu ảnh) ===== */
+  /* Ảnh chân dung ở Hero */
+  .hero-portrait{
+    margin-top:50px;width:100%;max-width:360px;aspect-ratio:4/5;
+    border-radius:8px;object-fit:cover;border:1px solid var(--line);
+    box-shadow:0 30px 70px -28px rgba(0,0,0,.8);
+  }
+  /* Dải ảnh quán / sự kiện (xếp ngang, cuộn ngang trên mobile) */
+  .photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  @media(max-width:760px){.photo-row{grid-template-columns:1fr}}
+  .photo-row img{
+    width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;
+    border:1px solid var(--line-soft);transition:transform .5s,border-color .5s;
+  }
+  .photo-row img:hover{transform:translateY(-5px);border-color:var(--line)}
+  /* Ảnh bìa sách thật (thay cho bìa vẽ bằng chữ) */
+  .book-photo{
+    width:100%;aspect-ratio:3/4.2;object-fit:cover;border-radius:4px;
+    border:1px solid rgba(227,168,87,.25);box-shadow:0 30px 60px -20px rgba(0,0,0,.7);
+  }
+  /* chú thích nhỏ dưới ảnh */
+  .caption{font-size:.8rem;color:var(--muted);letter-spacing:.03em;margin-top:10px;font-style:italic}
+
+  /* ===== FOOTER / CONNECT ===== */
+  .connect{padding:120px 0 90px;text-align:center;border-top:1px solid var(--line-soft);position:relative;overflow:hidden}
+  .connect-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(227,168,87,.12),transparent 70%);pointer-events:none}
+  .connect h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:300;position:relative}
+  .connect h2 em{font-style:italic;color:var(--amber-soft)}
+  .connect .links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:40px;position:relative}
+  .connect .links a{
+    border:1px solid var(--line);padding:14px 30px;border-radius:40px;
+    font-size:.9rem;letter-spacing:.05em;transition:.35s;color:var(--cream);
+  }
+  .connect .links a:hover{background:var(--amber);color:var(--ink);border-color:var(--amber)}
+  .foot{padding:34px 0;text-align:center;border-top:1px solid var(--line-soft);color:var(--muted);font-size:.78rem;letter-spacing:.05em}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="brand" id="brand"></div>
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#venture">The Venture</a>
+    <a href="#journey">Journey</a>
+    <a href="#awards">Recognition</a>
+    <a href="#book">Author</a>
+    <a href="#connect">Connect</a>
+  </div>
+</nav>
+
+<main id="app"><!-- noi dung duoc nap tu content.json --></main>
+
+<script>
+// ===== Decap-driven renderer: doc content.json va dung trang =====
+const esc = s => (s==null?'':String(s));
+
+function render(d){
+  document.getElementById('page-title').textContent = (d.meta&&d.meta.page_title)||'';
+  const b=d.meta||{};
+  document.getElementById('brand').innerHTML =
+    esc(b.brand_left)+'<b>'+esc(b.brand_mid)+'</b>'+esc(b.brand_right);
+
+  const h=d.hero||{}, st=d.story||{}, v=d.venture||{}, j=d.journey||{},
+        a=d.achievements||{}, aw=d.awards||{}, bk=d.book||{}, sp=d.speaking||{},
+        r=d.roles||{}, c=d.connect||{};
+
+  const heroMeta=(h.meta||[]).map(m=>'<span>'+esc(m)+'</span>').join('');
+  const heroImg = h.portrait ? '<img class="hero-portrait reveal" style="--d:.6s" src="'+esc(h.portrait)+'" alt="'+esc(h.name_line1)+' '+esc(h.name_line2)+'">' : '';
+
+  const storyP = (st.paragraphs||[]).map((p,i)=>'<p class="'+(i===0?'drop ':'')+'reveal">'+p+'</p>').join('');
+  const storyPA = (st.paragraphs_after||[]).map(p=>'<p class="reveal">'+p+'</p>').join('');
+
+  const stats=(v.stats||[]).map(s=>'<div class="stat"><div class="n">'+esc(s.number)+'</div><div class="l">'+esc(s.label)+'</div></div>').join('');
+  const ventPhotos = (v.photos&&v.photos.length)? '<div class="photo-row reveal">'+v.photos.map(p=>'<img src="'+esc(p.image||p)+'" alt="'+esc(p.alt||'Three O\'Clock')+'">').join('')+'</div>' : '';
+
+  const tl=(j.items||[]).map(t=>'<div class="tl-item reveal"><div class="tl-year">'+esc(t.year)+'</div><div class="tl-body"><h4>'+esc(t.title)+'</h4><p>'+t.text+'</p></div></div>').join('');
+
+  const cards=(a.cards||[]).map(card=>'<div class="card reveal"><span class="tag">'+esc(card.tag)+'</span><h4>'+card.title+'</h4><p>'+card.text+'</p></div>').join('');
+
+  const awards=(aw.items||[]).map(x=>'<div class="award reveal"><div class="ico">'+esc(x.icon)+'</div><div><h4>'+x.title+'</h4><span>'+esc(x.subtitle)+'</span></div></div>').join('');
+
+  const bookCover = bk.cover_image
+    ? '<img class="book-photo" src="'+esc(bk.cover_image)+'" alt="'+esc(bk.title)+'">'
+    : '<div class="book-cover"><div class="bc-top">Thuan Nguyen</div><div class="bc-num">7</div><div class="bc-title">Ngày Học<br>Kinh Doanh<br>F&amp;B</div></div>';
+  const bookP=(bk.paragraphs||[]).map(p=>'<p>'+p+'</p>').join('');
+  const bookStats=(bk.stats||[]).map(s=>'<div class="bs"><div class="n">'+esc(s.number)+'</div><div class="l">'+esc(s.label)+'</div></div>').join('');
+
+  const events=(sp.events||[]).map(e=>'<div class="ev"><div class="t">'+esc(e.title)+'</div><div class="m">'+esc(e.meta)+'</div></div>').join('');
+  const tv=(sp.tv||[]).map(t=>'<span class="chip tv">'+esc(t)+'</span>').join('');
+  const press=(sp.press||[]).map(p=>'<span class="chip">'+esc(p)+'</span>').join('');
+  const spPhotos=(sp.photos&&sp.photos.length)? '<div class="photo-row reveal">'+sp.photos.map(p=>'<img src="'+esc(p.image||p)+'" alt="'+esc(p.alt||'Event')+'">').join('')+'</div>' : '';
+
+  const roles=(r.items||[]).map(x=>'<div class="role reveal"><div class="r">'+esc(x.role)+'</div><div class="o">'+esc(x.org)+'</div><div class="y">'+esc(x.years)+'</div></div>').join('');
+
+  const links=(c.links||[]).map(l=>'<a href="'+esc(l.url)+'" target="_blank" rel="noopener">'+esc(l.label)+'</a>').join('');
+
+  document.getElementById('app').innerHTML = `
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow two"></div>
+    <div class="wrap">
+      <span class="eyebrow reveal" style="--d:.05s">${esc(h.eyebrow)}</span>
+      <h1 class="reveal" style="--d:.15s">${esc(h.name_line1)}<br><span class="it">${esc(h.name_line2)}</span></h1>
+      <p class="hero-sub reveal" style="--d:.3s">${esc(h.subtitle)}</p>
+      <div class="hero-meta reveal" style="--d:.45s">${heroMeta}</div>
+      ${heroImg}
+    </div>
+  </header>
+
+  <section class="sec story" id="story"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">${esc(st.eyebrow)}</span><h2>${st.heading||''}</h2></div>
+    ${storyP}
+    <blockquote class="pull reveal">${esc(st.pull_quote)}</blockquote>
+    ${storyPA}
+  </div></section>
+
+  <section class="sec" id="venture"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">${esc(v.eyebrow)}</span><h2>${v.heading||''}</h2></div>
+    <div class="stats reveal">${stats}</div>
+    <p class="reveal" style="margin-top:38px;color:var(--cream-dim);max-width:760px;font-size:1.1rem">${esc(v.closing)}</p>
+    ${ventPhotos}
+  </div></section>
+
+  <section class="sec" id="journey"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">${esc(j.eyebrow)}</span><h2>${j.heading||''}</h2></div>
+    <div class="timeline">${tl}</div>
+  </div></section>
+
+  <section class="sec" id="achievements"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">${esc(a.eyebrow)}</span><h2>${a.heading||''}</h2></div>
+    <div class="grid">${cards}</div>
+  </div></section>
+
+  <section class="sec" id="awards"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">${esc(aw.eyebrow)}</span><h2>${aw.heading||''}</h2></div>
+    <div class="awards">${awards}</div>
+  </div></section>
+
+  <section class="sec" id="book"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">${esc(bk.eyebrow)}</span><h2>${bk.heading||''}</h2></div>
+    <div class="book reveal">
+      ${bookCover}
+      <div class="book-info">
+        <h3>${esc(bk.title)}</h3>
+        <div class="sub">${esc(bk.subtitle)}</div>
+        ${bookP}
+        <div class="book-stats">${bookStats}</div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="speaking"><div class="wrap">
+    <div class="two-col">
+      <div class="col reveal">
+        <h3><span class="e">${esc(sp.col1_eyebrow)}</span>${esc(sp.col1_heading)}</h3>
+        ${events}
+      </div>
+      <div class="col reveal">
+        <h3><span class="e">${esc(sp.col2_eyebrow)}</span>${esc(sp.col2_heading)}</h3>
+        <p style="color:var(--cream-dim);margin-bottom:18px">${esc(sp.tv_note)}</p>
+        <div class="chips">${tv}</div>
+        <p style="color:var(--cream-dim);margin:26px 0 14px">${esc(sp.press_note)}</p>
+        <div class="chips">${press}</div>
+      </div>
+    </div>
+    ${spPhotos}
+  </div></section>
+
+  <section class="sec" id="roles"><div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">${esc(r.eyebrow)}</span><h2>${r.heading||''}</h2></div>
+    <div class="roles">${roles}</div>
+  </div></section>
+
+  <section class="connect" id="connect">
+    <div class="connect-glow"></div>
+    <div class="wrap">
+      <span class="eyebrow reveal">${esc(c.eyebrow)}</span>
+      <h2 class="reveal" style="margin-top:22px">${c.heading||''}</h2>
+      <div class="links reveal">${links}</div>
+    </div>
+  </section>
+
+  <div class="foot">${esc(c.footer)}</div>
+  `;
+
+  initInteractions();
+}
+
+function initInteractions(){
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+  document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('in'));
+  const io=new IntersectionObserver((es)=>{
+    es.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(e.target.closest('.hero')?0:Math.min(i*60,240))+'ms';e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>{if(!el.closest('.hero'))io.observe(el);});
+}
+
+fetch('content.json?v='+Date.now())
+  .then(r=>r.json())
+  .then(render)
+  .catch(e=>{document.getElementById('app').innerHTML='<div style="padding:120px 32px;text-align:center">Khong tai duoc noi dung. Kiem tra file content.json.</div>';console.error(e);});
+</script>
+</body>
+</html>
